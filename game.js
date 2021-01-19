@@ -1,8 +1,8 @@
+//Global Game Variables
 var buttonColours = ["red", "blue", "green", "yellow"];
-
 var gamePattern = [];
 var userClickedPattern = [];
-
+//Start the Game - Press any key (or touch screen on mobile) to start
 var started = false;
 var level = 0;
 
@@ -14,6 +14,10 @@ $(document).on("keypress touchstart", function () {
 	}
 });
 
+// Compare the user answer to the game answer
+// Check the answer for each click
+// Firstly, check if latest input click does not match the relevant game buttonColours. If no match, game over 
+// Secondly, if the last item in the array is correct, then proceed to the next round
 $(".btn").click(function () {
 	var userChosenColour = $(this).attr("id");
 
@@ -24,6 +28,7 @@ $(".btn").click(function () {
 
 	checkAnswer(userClickedPattern.length - 1);
 });
+
 
 function checkAnswer(currentLevel) {
 	if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
@@ -44,7 +49,10 @@ function checkAnswer(currentLevel) {
 		startOver();
 	}
 }
-
+//Game to pick a random colour each round
+// A random number will be generated and used to index from the array of available button Colours
+// The relevant sound and an animation will be played for Colours
+// Previous PLayer patterns reset for each round
 function nextSequence() {
 	userClickedPattern = [];
 
@@ -76,7 +84,7 @@ function playSound(name) {
 	var audio = new Audio("sounds/" + name + ".mp3");
 	audio.play();
 }
-
+// Start Over Fucntion - Reset all variables and restart game
 function startOver() {
 	level = 0;
 	gamePattern = [];
