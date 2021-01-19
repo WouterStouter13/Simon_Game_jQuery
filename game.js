@@ -52,7 +52,6 @@ function checkAnswer(currentLevel) {
 //Game to pick a random colour each round
 // A random number will be generated and used to index from the array of available button Colours
 // The relevant sound and an animation will be played for Colours
-// Previous PLayer patterns reset for each round
 function nextSequence() {
 	userClickedPattern = [];
 
@@ -72,6 +71,7 @@ function nextSequence() {
 	playSound(randomChosenColour);
 }
 
+// Function to animate the colour button which has been pressed
 function animatePress(currentColour) {
 	$("#" + currentColour).addClass("pressed");
 
@@ -80,6 +80,7 @@ function animatePress(currentColour) {
 	}, 100);
 }
 
+// Function to play a sound of a colour (used by game and user)
 function playSound(name) {
 	var audio = new Audio("sounds/" + name + ".mp3");
 	audio.play();
